@@ -5,6 +5,9 @@
                     },
                     {
                         "path":  "SuperApp"
+                    },
+                    {
+                        "path":  "SuperApp.Test"
                     }
                 ],
     "settings":  {
