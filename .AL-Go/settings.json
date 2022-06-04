@@ -9,7 +9,7 @@
     "RepoVersion":  "2.0",
     "appDependencyProbingPaths":  [
                                       {
-                                          "release_status":  "release",
+                                          "release_status":  "latestBuild",
                                           "repo":  "https://github.com/BusinessCentralApps/BingMaps.PTE"
                                       }
                                   ]
