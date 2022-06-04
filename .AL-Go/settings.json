@@ -10,7 +10,7 @@
     "appDependencyProbingPaths":  [
                                       {
                                           "projects":  "*",
-                                          "release_status":  "latestBuild",
+                                          "release_status":  "release",
                                           "repo":  "https://github.com/BusinessCentralApps/BingMaps.PTE"
                                       }
                                   ]
