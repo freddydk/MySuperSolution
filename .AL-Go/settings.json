@@ -6,5 +6,12 @@
     "testFolders":  [
 
                     ],
-    "RepoVersion":  "2.0"
+    "RepoVersion":  "2.0",
+    "appDependencyProbingPaths":  [
+                                      {
+                                          "projects":  "*",
+                                          "release_status":  "latestBuild",
+                                          "repo":  "https://github.com/BusinessCentralApps/BingMaps.PTE"
+                                      }
+                                  ],
 }
