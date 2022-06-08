@@ -1,0 +1,44 @@
+﻿{
+    "id":  "d134ffa9-f645-48f7-a579-21abdb161167",
+    "name":  "Upstate Coin and Gold Custom Mods",
+    "publisher":  "CAI Software",
+    "version":  "19.0.1.6",
+    "brief":  "",
+    "description":  "Custom Mods for Upstate Coin and Gold",
+    "platform":  "19.0.0.0",
+    "application":  "19.0.0.0",
+    "runtime":  "7.0",
+    "logo":  "logo/UpstateCoin.png",
+    "url":  "https://www.caisoft.com/solutions/precious-metals/",
+    "EULA":  "https://www.caisoft.com/solutions/precious-metals/EULA.html",
+    "privacyStatement":  "https://www.caisoft.com/home/company/privacy-statement/",
+    "help":  "https://www.caisoft.com/solutions/precious-metals/help.html",
+    "target":  "Extension",
+    "screenshots":  [
+
+                    ],
+    "dependencies":  [
+                         {
+                             "id":  "8788f8f7-2afb-4cd8-9935-068947847f2a",
+                             "publisher":  "CAI Software",
+                             "name":  "CAi Software Precious Metals Solution",
+                             "version":  "19.0.1.36"
+                         }
+                     ],
+    "idRanges":  [
+                     {
+                         "from":  50000,
+                         "to":  50099
+                     }
+                 ],
+    "features":  [
+
+                 ],
+    "showMyCode":  true,
+    "internalsVisibleTo":  [
+
+                           ],
+    "keyVaultUrls":  [
+
+                     ]
+}
