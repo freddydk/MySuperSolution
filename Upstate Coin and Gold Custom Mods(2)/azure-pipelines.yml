@@ -1,0 +1,80 @@
+trigger:
+  branches:
+    include:
+    - master
+pool:
+  name: Default
+variables:
+- name: container_name
+  value: UpstateCoinBuild
+- name: company_name
+  value: CAI
+- name: user_name
+  value: admin
+- name: password
+  value: P@ssw0rd
+- name: license_file
+  value: '"C:\_CAI Licenses\CAIv19.flf"'
+- name: appSymbolsFolder
+  value: 'C:\agent\appfiles\'
+- name: appProjectFolder
+  value: 'C:\agent\_work\1\s\'
+- name: destinationFolder
+  value: 'C:\_BC App Files\'
+stages:
+- stage: build
+  displayName: Build
+  jobs:
+  - job: Build
+    timeoutInMinutes: 60
+    pool:
+      name: Default
+    steps:
+    - task: PowerShell@2
+      displayName: Install BCContainerHelper module
+      inputs:
+        targetType: inline
+        script: >
+          Install-PackageProvider -Name NuGet -Force -Scope CurrentUser; Install-Module -Name BCContainerHelper -Scope CurrentUser -force;
+    - task: PowerShell@2
+      displayName: Create build container
+      inputs:
+        targetType: inline
+        script: >
+          $artifactUrl = Get-BcArtifactUrl -type 'OnPrem' -country 'us' -version '19.0.29894.30693'; $Credential = [PSCredential]::new('$(user_name)',(ConvertTo-SecureString '$(password)' -AsPlainText -Force)); New-BcContainer -accept_eula -accept_outdated -containerName '$(container_name)' -auth UserPassword -credential $Credential `
+           -useGenericImage "$(Get-BestGenericImageName)-dev"  -isolation hyperv -artifacturl $artifactUrl -licenseFile $(license_file) -doNotExportObjectsToText  `
+           -shortcuts None   -updateHosts `
+           -additionalParameters @("--volume ""C:\agent\appfiles\:C:\shareddata""")
+    - task: PowerShell@2
+      displayName: Copy source into container folder
+      inputs:
+        targetType: inline
+        script: >
+          $SourceDir = 'C:\ProgramData\BcContainerHelper\Extensions\$(container_name)\Source'; 
+          $appSymbolsDir = 'C:\ProgramData\BcContainerHelper\Extensions'; New-Item $SourceDir -ItemType Directory; 
+          Copy-Item '$(Build.SourcesDirectory)\*' $SourceDir -Recurse -Force;
+          
+    - task: PowerShell@2
+      displayName: Compile app
+      inputs:
+        targetType: inline
+        script: >
+          $SourceDir = 'C:\ProgramData\BcContainerHelper\Extensions\$(container_name)\Source'; 
+          $Credential = [PSCredential]::new('$(user_name)',(ConvertTo-SecureString '$(password)' -AsPlainText -Force)); 
+          Compile-AppInNavContainer -containerName '$(container_name)' -appProjectFolder $SourceDir -appSymbolsFolder '$(appSymbolsFolder)'  -credential $Credential -AzureDevOps -FailOn 'error';
+
+    - task: PowerShell@2
+      displayName: Copy app into build artifacts staging folder
+      inputs:
+        targetType: inline
+        script: >
+          $SourceDir = 'C:\ProgramData\BcContainerHelper\Extensions\$(container_name)\Source';  
+          Copy-Item "$SourceDir\output\*.app" '$(destinationFolder)'; 
+    - task: PowerShell@2
+      displayName: Remove build container
+      inputs:
+        targetType: inline
+        script: >
+          Remove-NavContainer $(container_name)
+      condition: always()
+

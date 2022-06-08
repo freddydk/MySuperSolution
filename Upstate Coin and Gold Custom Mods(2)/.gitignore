@@ -1,0 +1,6 @@
+*.alpackages
+rad.json
+*.suo
+*.sqlite
+VSWorkspaceState.json
+cache_*

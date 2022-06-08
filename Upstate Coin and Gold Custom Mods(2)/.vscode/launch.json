@@ -1,0 +1,131 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Upstate Coin Docker Container",
+            "type": "al",
+            "request": "launch",
+            "environmentType": "OnPrem",
+            "server": "http://bcupstateonprem",
+            "serverInstance": "BC",
+            "authentication": "UserPassword",
+            "breakOnError": true,
+            "breakOnRecordWrite": false,
+            "launchBrowser": true,
+            "enableSqlInformationDebugger": true,
+            "enableLongRunningSqlStatements": true,
+            "longRunningSqlStatementsThreshold": 500,
+            "numberOfSqlStatements": 10,
+            "schemaUpdateMode": "Synchronize",
+            "tenant": "default"
+        },         {
+            "name": "BC Container - newest onprem",
+            "type": "al",
+            "request": "launch",
+            "server": "http://bcconprem",
+            "port": 7049,
+            "serverInstance": "BC",
+            "authentication": "UserPassword",
+            "breakOnError": true,
+            "schemaUpdateMode": "Synchronize"
+        },
+        {
+            "name": "BC Container - newest sandbox",
+            "type": "al",
+            "request": "launch",
+            "server": "http://bccsandbox",
+            "port": 7049,
+            "serverInstance": "BC",
+            "authentication": "UserPassword",
+            "breakOnError": true,
+            "schemaUpdateMode": "Synchronize"
+        },
+        {
+            "name": "Attach: Upstate OnPrem",
+            "type": "al",
+            "request": "attach",
+            "environmentType": "OnPrem",
+            "server": "http://bcupstateonprem",
+            "serverInstance": "BC",
+            "authentication": "UserPassword",
+            "breakOnError": true,
+            "breakOnRecordWrite": false,
+            "enableSqlInformationDebugger": true,
+            "enableLongRunningSqlStatements": true,
+            "longRunningSqlStatementsThreshold": 500,
+            "numberOfSqlStatements": 10,
+            "breakOnNext": "WebServiceClient",
+            "tenant": "default"
+        },
+       {
+            "type": "al",
+            "request": "launch",
+            "name": "Sue McAndrews Docker",
+            "server": "http://bcc14",
+            "port": 7049,
+            "serverInstance": "NAV",
+            "authentication": "UserPassword",
+            "breakOnError": true,
+            "schemaUpdateMode": "Synchronize",
+            "launchBrowser": true
+        },
+        {
+            "type": "al",
+            "request": "launch",
+            "name": "Susan McAndrews",
+            "server": "http://SueM-1/BCDEMO",
+            "port": 7049,
+            "serverInstance": "BC140",
+            "authentication": "Windows",
+            "breakOnError": true,
+            "schemaUpdateMode": "Synchronize"
+        },
+        {
+            "type": "al",
+            "request": "launch",
+            "name": "Moe Hebert",
+            "server": "http://MHEBERT-LT-17/BCDEMO",
+            "port": 7049,
+            "serverInstance": "BC140",
+            "authentication": "Windows",
+            "breakOnError": true,
+            "schemaUpdateMode": "Synchronize"
+        },
+        {
+            "type": "al",
+            "request": "launch",
+            "name": "Moe Hebert Docker",
+            "server": "http://BCC14",
+            "port": 7049,
+            "serverInstance": "NAV",
+            "authentication": "UserPassword",
+            "breakOnError": true,
+            "schemaUpdateMode": "Synchronize",
+            "launchBrowser": true
+        },
+        {
+            "name": "daveb-laptop",
+            "type": "al",
+            "request": "launch",
+            "server": "http://daveb-laptop/BCDEMO",
+            "port": 14049,
+            "serverInstance": "BC140",
+            "authentication": "Windows",
+            "breakOnError": true,
+            "schemaUpdateMode": "Synchronize"
+        },
+
+        {
+            "type": "al",
+            "request": "launch",
+            "name": "Bill Tierney Docker",
+            "server": "http://bcc14",
+            "port": 7049,
+            "serverInstance": "NAV",
+            "authentication": "UserPassword",
+            "breakOnError": true,
+            "schemaUpdateMode": "Synchronize",
+            "launchBrowser": true
+        }
+    ]
+}
